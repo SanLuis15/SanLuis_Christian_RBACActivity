@@ -18,6 +18,7 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Config\Filters as BaseFilters;
+use App\Filters\ApiAuthFilter;
 
 class Filters extends BaseFilters
 {
@@ -46,6 +47,7 @@ class Filters extends BaseFilters
         'admin'         => AdminFilter::class,
         'coordinator'   => CoordinatorFilter::class,
         'records_editor'=> RecordsEditorFilter::class,
+        'api_auth'      => ApiAuthFilter::class,
     ];
 
     /**
