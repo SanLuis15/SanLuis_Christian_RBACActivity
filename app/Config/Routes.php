@@ -72,3 +72,20 @@ $routes->group('admin', ['filter' => ['auth', 'admin']], static function ($route
     $routes->post('users/store', 'Admin\UserAdminController::storeUser');
     $routes->post('users/delete/(:num)', 'Admin\UserAdminController::deleteUser/$1');
 });
+
+// ════════════════════════════════════════════════════════════
+//  API v1 — token-authenticated JSON endpoints
+// ════════════════════════════════════════════════════════════
+
+// Issue token
+$routes->post('api/v1/auth/token', 'Api\AuthController::issueToken');
+
+// Protected API routes
+$routes->group('api/v1', ['filter' => 'api_auth'], static function ($routes) {
+    // Auth
+    $routes->delete('auth/token', 'Api\AuthController::revokeToken');
+
+    // Students resource
+    $routes->get('students',       'Api\StudentsController::index');
+    $routes->get('students/(:num)', 'Api\StudentsController::show/$1');
+});
