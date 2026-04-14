@@ -37,7 +37,6 @@ class ApiAuthFilter implements FilterInterface
             ->join('users u', 'u.id = t.user_id')
             ->join('roles r', 'r.id = u.role_id', 'left')
             ->where('t.token', $token)
-            ->where('u.deleted_at IS NULL')
             ->get()
             ->getRowArray();
 
